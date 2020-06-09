@@ -63,66 +63,57 @@ if(isset($_POST['register'])){
     //If the signup process is successful.
     if($result){
         //What you do here is up to you!
-        echo 'Thank you for registering with our website.';
+        header('Location: login.php');
     }    
 }
 
 ?>
-
 
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
         <title>Register</title>
+        <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     </head>
-    <style type="text/css">
-    	.form-group {
-    		margin-top: 10px;
-    	}
     </style>
     <body>
+    <section class="login-page">
+    <section class="form">
     <h1>Register</h1>
-
        <form action="register.php" method="post">
-            <div class="form-group">
-                <label for="">Username* : </label>
-                <input type="text" name="username" class="form-control" required/>
+            <div>
+                <input type="text" placeholder="username" name="username" class="form-control" required/>
             </div>
 
-            <div class="form-group">
-                <label for="">First Name : </label>
-                <input type="text" name="firstname" class="form-control" required/>
+            <div>
+                <input type="text" placeholder="firstname" name="firstname" class="form-control" required/>
             </div>
-            <div class="form-group">
-                <label for="">Last Name : </label>
-                <input type="text" name="lastname" class="form-control" required/>
+            <div>
+                <input type="text" placeholder="lastname" name="lastname" class="form-control" required/>
             </div>
 
-            <div class="form-group">
-                <label for="">Email* : </label>
-                <input type="email" name="email" class="form-control" required/>
+            <div>
+                <input type="email" placeholder="email" name="email" class="form-control" required/>
             </div>   
 
-            <div class="form-group">
-                <label for="">Birth date : </label>
-                <input type="date" name="birthdate" class="form-control" required/>
+            <div>
+                <input type="date" placeholder="birthdate" name="birthdate" class="form-control" required/>
             </div>
          
-            <div class="form-group">
-                <label for="">Password* : </label>
-                <input type="password" name="password" class="form-control" required/>
+            <div>
+                <input type="password" placeholder="password" name="password" class="form-control" required/>
             </div>
 
-            <div class="form-group">
-                <label for="">Confirm Password* : </label>
-                <input type="password" name="confirm_password" class="form-control" required/>
+            <div>
+                <input type="password" placeholder="confirm_password" name="confirm_password" class="form-control" required/>
             </div>
 
-            <div class="form-group">
-                <input type="submit" name="register" class="btn btn-primary" value="Register"/>
+            <div>
+                <input type="submit" name="register" class="btn btn-primary" value="SIGN IN"/>
             </div>
-
+        </section>
+        </section>
         </form>
     </body>
 </html>
