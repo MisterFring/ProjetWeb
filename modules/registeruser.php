@@ -1,13 +1,13 @@
+
 <?php
 session_start();
-require 'modules/bdd.php';
-require 'modules/functions.php';
+require 'bdd.php';
+require 'functions.php';
 
 $errorLogName = "<div></div>";
 $errorLogPw = "<div></div>";
 $errorLogMail = "<div></div>";
-
-
+$validation = true;
 
 if(isset($_POST['register'])){
     
@@ -15,7 +15,7 @@ if(isset($_POST['register'])){
     $username = !empty($_POST['username']) ? trim($_POST['username']) : null;
     $pass = !empty($_POST['password']) ? trim($_POST['password']) : null;
     $email = !empty($_POST['email']) ? trim($_POST['email']) : null;
-    
+
     $firstname = !empty($_POST['firstname']) ? trim($_POST['firstname']) : null;
     $lastname = !empty($_POST['lastname']) ? trim($_POST['lastname']) : null;
 
@@ -23,10 +23,10 @@ if(isset($_POST['register'])){
 
     // checking the equality of the two passwords
 
-    // if (($_POST['password'])!=($_POST['confirm_password'])) {
-    //     $errorLogPw = '<div style="font-style: italic; font-weight: bold; text-align: center">The 2 passwords are different</div></br>';
-    //     $validation = false;
-    // }
+    if (($_POST['password'])!=($_POST['confirm_password'])) {
+        $errorLogPw = '<div style="font-style: italic; font-weight: bold; text-align: center">The 2 passwords are different</div></br>';
+        $validation = false;
+    }
     
     // ====================== UNIQUE CHECKER ====================== //
     // checking the unicity of username & password
@@ -54,8 +54,7 @@ if(isset($_POST['register'])){
     }
 
     // ========================================================= //
-    if (check_password($pass) === true) {
-       
+    if ($validation) {
         $passwordHash = password_hash($pass, PASSWORD_BCRYPT, array("cost" => 12));
            
         $sql = "INSERT INTO users (username, password, email, firstname, lastname, birthdate) VALUES (:username, :password, :email, :firstname, :lastname, :birthdate)";
@@ -71,71 +70,16 @@ if(isset($_POST['register'])){
         $stmt->bindValue(':birthdate', $birthdate);
      
         //Execute the statement and insert the new account.
-        
         $result = $stmt->execute();
         
-        send_mail($email);
-        header('Location: login.php');
- 
-   
-     
-    }
-    else{
-        echo 'fhjkdjksdjkskjhdf';
+        //If the signup process is successful.
+        if($result){
+
+            send_mail($email);
+            header('Location: login.php');
+
+
+        }    
     }
 }
-
 ?>
-
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Register</title>
-        <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    </head>
-    </style>
-    <body>
-    <section class="login-page">
-    <section class="form">
-    <h1>Register</h1>
-       <form action="register.php" method="post">
-       <?php echo $errorLogName;?>
-            <div>
-                <input type="text" placeholder="username" name="username" class="form-control" required/>
-            </div>
-
-            <div>
-                <input type="text" placeholder="firstname" name="firstname" class="form-control" required/>
-            </div>
-            <div>
-                <input type="text" placeholder="lastname" name="lastname" class="form-control" required/>
-            </div>
-            <?php echo $errorLogMail;?>
-            <div>
-                <input type="email" placeholder="email" name="email" class="form-control" required/>
-            </div>   
-
-            <div>
-                <input type="date" placeholder="birthdate" name="birthdate" class="form-control" required/>
-            </div>
-            <?php if (isset($_POST['password'])){
-                echo check_password($pass);
-            }?>            
-            <div>
-                <input type="te"  placeholder="password" name="password" class="form-control" required/>
-            </div>
-
-            <?php echo $errorLogPw;?>
-            <div>
-                <input type="password" placeholder="confirm_password" name="confirm_password" class="form-control"/>
-            </div>
-
-            <div>
-                <input type="submit" name="register" class="btn btn-primary" value="SIGN IN"/>
-            </div>
-        </section>
-        </section>
-        </form>
-    </body>
-</html>

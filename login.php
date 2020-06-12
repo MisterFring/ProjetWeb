@@ -56,14 +56,26 @@ if(isset($_POST['login'])){
     <body>
         <div class="login-page">
         <div class="form">
-            <h1>Log in</h1>
+            <center style="margin-top: -30px;"><img src="assets/images/itescia.png" height="120px" width="120px" />
+            <h2>TO CONTINUE, LOGIN TO ITESFY.</h2></center>
                 <?php echo $errorLog;?>
                 <form action="login.php" method="post">
-                    <input type="text" name="email" id="email" placeholder="email"><br>
-                    <input type="text" name="password" id="password" placeholder="password"><br>
-                    <input type="submit" name="login" value="Log in">
+                    <input type="text" name="email" id="email" placeholder="EMAIL"><br>
+                    <input type="text" name="password" id="password" placeholder="PASSWORD"><br>
+                
+                <div class="login">
+                    <input type="checkbox" name="remember-me"><label for="remember-me">REMEMBER ME</label>
+                    <span class="checkmark"></span>
+                    <button type="submit" name="login">Log In</button>
+                </div>
+                
+                <br/>
                 </form>
-                <p class="message">Not registered ? <a href="register.php">Sign In</a></p>
+                <p class="message">NOT REGISTERED ? <a href="register.php">SIGN IN</a></p>
+                <br/>
+                <div class="google-btn">
+                    <button>Continue with Google</button>
+                </div>
         </div>
         </div>
     </body>
