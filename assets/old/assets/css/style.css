@@ -3,6 +3,7 @@
 body {
   background: no-repeat center center fixed; 
   background-image: linear-gradient(180deg, #333, #ff949f);
+
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;      
@@ -12,16 +13,7 @@ h1 {
   font-color: black;
   font-size: 34px;
 }
-label {
-  font-size: 19px; 
-  font-weight: bold; 
-  font-style: italic;
-}
-.picture {
-  height: 150px;
-  width: 150px;
-  border: 2px solid black;
-}
+
 .login-page {
   width: 660px;
   padding: 8% 0 0;
@@ -40,23 +32,17 @@ label {
   border-radius: 8px;
 }
 
-.form input, textarea {
+.form input {
   font-family: "Roboto", sans-serif;
   outline: 0;
   background: #f2f2f2;
   width: 100%;
   border: 0;
-  margin: 15px 0 15px;
+  margin: 0 0 15px;
   padding: 20px;
   box-sizing: border-box;
   font-size: 19px;
   border-radius: 8px;
-}
-
-.form textarea {
-  resize: vertical;
-  min-height: 100px;
-  max-height: 300px;
 }
 
 .form .message {
@@ -70,7 +56,7 @@ label {
   text-decoration: none;
 }
 
-/* Login Buttons */
+* Login Buttons */
 .login{
     display: inline;
     width: 100%;
@@ -93,7 +79,6 @@ label {
     word-wrap: none;
     padding-left: 10px;
 }
-
 .login button{
     float: right;
     padding: 15px 90px;
@@ -130,12 +115,4 @@ label {
 
 .google-btn button:hover{
     background: #181818
-}
-
-#verif{
-  height:15px;
-  width:70%;
-  background-color:grey;
-  margin: auto;
-  border-radius: 8px;
 }
